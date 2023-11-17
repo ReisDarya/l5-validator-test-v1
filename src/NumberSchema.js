@@ -13,11 +13,11 @@ class NumberSchema {
     }
     return type;
   }
-
+  // eslint-disable-next-line
   even() {
     return new NumberSchema({ even: true });
   }
-
+  // eslint-disable-next-line
   odd() {
     return new NumberSchema({ odd: true });
   }
