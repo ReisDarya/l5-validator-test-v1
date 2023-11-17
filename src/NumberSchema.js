@@ -1,30 +1,25 @@
 class NumberSchema {
-  constructor() {
-    this.iseven = false;
-    this.isodd = false;
+  constructor(option) {
+    this.option = option || {};
   }
 
   isValid(data) {
-    if (typeof data !== 'number') {
-      return false;
+    const type = typeof data === 'number';
+    if (Object.hasOwn(this.option, 'even') && type) {
+      return data % 2 === 0;
     }
-    if (this.iseven && data % 2 !== 0) {
-      return false;
+    if (Object.hasOwn(this.option, 'odd') && type) {
+      return data % 2 !== 0;
     }
-    if (this.isodd && data % 2 === 0) {
-      return false;
-    }
-    return true;
+    return type;
   }
 
   even() {
-    this.iseven = true;
-    return this;
+    return new NumberSchema({ even: true });
   }
 
   odd() {
-    this.isodd = true;
-    return this;
+    return new NumberSchema({ odd: true });
   }
 }
 export default NumberSchema;
